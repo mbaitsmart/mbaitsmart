@@ -1,0 +1,32 @@
+function onFormSubmit() {
+    
+    var form = FormApp.openById('ส่วนนี้ไป copy Google Code มาใส่ได้เลย');
+    var fRes = form.getResponses();
+
+    var formResponse = fRes[fRes.length - 1];
+    var itemResponses = formResponse.getItemResponses();
+
+   var msg = 'หัวข้อรายงานผล!'
+     + ' \n' + itemResponses[0].getItem().getTitle() + ': ' + itemResponses[0].getResponse() +
+        ' \n' + itemResponses[1].getItem().getTitle() + ': ' + itemResponses[1].getResponse() +
+        ' \n' + itemResponses[2].getItem().getTitle() + ': ' + itemResponses[2].getResponse() + 
+        ' \n' + itemResponses[3].getItem().getTitle() + ': ' + itemResponses[3].getResponse() +
+        ' \n' + itemResponses[4].getItem().getTitle() + ': ' + itemResponses[4].getResponse()       ส่วนนี้ให้ดูครับว่าเราต้องการให้ตอบจำนวนกี่ฟอร์ม นับมาจาก Google form
+
+        sendLineNotify(msg);
+    //  Logger.log(msg)
+}
+
+function sendLineNotify(message) {
+
+    var token = ["ใส่ TOKEN ที่ได้มาจาก LINE"];
+    var options = {
+        "method": "post",
+        "payload": "message=" + message,
+        "headers": {
+            "Authorization": "IT-Smart" + token
+        }
+    };
+
+    UrlFetchApp.fetch("https://notify-api.line.me/api/notify", options);
+}
