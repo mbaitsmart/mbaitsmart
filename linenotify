@@ -24,7 +24,7 @@ function sendLineNotify(message) {
         "method": "post",
         "payload": "message=" + message,
         "headers": {
-            "Authorization": "IT-Smart" + token
+            "Authorization": "ITSmart" + token
         }
     };
 
